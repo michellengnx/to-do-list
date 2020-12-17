@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do list</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <!-- scriptlet tag  -->
+ 
+<%-include("header") -%>
+
+    <div class="box" id="heading">
+        <h1>
+            <%= listTitle %>
+        </h1>
+    </div>
+
+
+    <div class="box">
+        <form action="/delete" method="post">
+            <input type="hidden" name="name" value="<%- listTitle %>">
+            <% toDoItems.forEach(function(item){ %>
+                <div class="item">
+                    <input type="checkbox" name="checkbox" onChange="this.form.submit()" value="<%= item._id %>">
+                    <p><%= item.name %></p>
+                </div>
+            
+            <%   }) %>
+        </form>
+       
+               
+          
+            <form class="item" action="/" method="post">
+                <input type="text" name="newToDo" autocomplete="off" placeholder="New To Do">
+                <button type="submit" name="button" value = "<%- listTitle %>" >+</button>
+             </form>
+    </div>
+
+
+<%-include("footer") -%>
+</html>
